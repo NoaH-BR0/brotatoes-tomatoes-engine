@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Brotatoes Tomatoes Engine</title>
+<style>
+body {
+  background: #e5e5e5;
+  font-family: Arial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+#calculator {
+  background: #f0f0f0;
+  width: 310px;
+  padding: 15px;
+  border: 1px solid #aaa;
+  box-shadow: 0 5px 20px #999;
+}
+#display {
+  width: 100%;
+  box-sizing: border-box;
+  height: 65px;
+  font-size: 30px;
+  text-align: right;
+  border: 1px solid #aaa;
+  margin-bottom: 12px;
+  padding: 8px;
+}
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+button {
+  height: 52px;
+  font-size: 19px;
+  border: 1px solid #aaa;
+  background: #fafafa;
+  cursor: pointer;
+}
+button:hover { background: #ddd; }
+#arcade {
+  display: none;
+  text-align: center;
+  background: #151515;
+  color: white;
+  padding: 30px;
+  width: 320px;
+  border: 2px solid #777;
+}
+#arcade button { margin: 5px; }
+</style>
+</head>
+<body>
+
+<div id="calculator">
+  <h3>Calculator</h3>
+  <input id="display" value="0" readonly>
+  <div class="buttons">
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="add('/')">÷</button>
+    <button onclick="add('*')">×</button>
+    <button onclick="backspace()">⌫</button>
+
+    <button onclick="add('7')">7</button>
+    <button onclick="add('8')">8</button>
+    <button onclick="add('9')">9</button>
+    <button onclick="add('-')">−</button>
+
+    <button onclick="add('4')">4</button>
+    <button onclick="add('5')">5</button>
+    <button onclick="add('6')">6</button>
+    <button onclick="add('+')">+</button>
+
+    <button onclick="add('1')">1</button>
+    <button onclick="add('2')">2</button>
+    <button onclick="add('3')">3</button>
+    <button onclick="calculate()" style="grid-row:span 2;height:110px">=</button>
+
+    <button onclick="add('0')">0</button>
+    <button onclick="add('.')">.</button>
+  </div>
+</div>
+
+<div id="arcade">
+  <h1>🍅 BROTATOES TOMATOES ENGINE</h1>
+  <p>SECRET ACCESS GRANTED</p>
+  <h2>THE HIDDEN ARCADE</h2>
+  <p>Games coming soon...</p>
+  <button onclick="closeArcade()">Return to Calculator</button>
+</div>
+
+<script>
+const display = document.getElementById("display");
+
+function add(value) {
+  if (display.value === "0" || display.value === "Error") {
+    display.value = value;
+  } else {
+    display.value += value;
+  }
+}
+
+function clearDisplay() {
+  display.value = "0";
+}
+
+function backspace() {
+  display.value = display.value.slice(0, -1) || "0";
+}
+
+function calculate() {
+  try {
+    if (!/^[0-9+*/.() -]+$/.test(display.value)) throw Error();
+    const result = Function("return (" + display.value + ")")();
+    if (!Number.isFinite(result)) throw Error();
+    display.value = String(result);
+  } catch {
+    display.value = "Error";
+  }
+}
+
+const secretCode = [
+  "ARROWUP", "ARROWUP",
+  "ARROWDOWN", "ARROWDOWN",
+  "ARROWLEFT", "ARROWRIGHT",
+  "ARROWLEFT", "ARROWRIGHT",
+  "B", "A", "ENTER"
+];
+
+let progress = 0;
+
+document.addEventListener("keydown", function(event) {
+  const key = event.key.toUpperCase() === "ARROWUP" ? "ARROWUP" :
+    event.key.toUpperCase() === "ARROWDOWN" ? "ARROWDOWN" :
+    event.key.toUpperCase() === "ARROWLEFT" ? "ARROWLEFT" :
+    event.key.toUpperCase() === "ARROWRIGHT" ? "ARROWRIGHT" :
+    event.key.toUpperCase();
+
+  if (key === secretCode[progress]) {
+    progress++;
+    if (progress === secretCode.length) {
+      openArcade();
+      progress = 0;
+    }
+  } else {
+    progress = key === secretCode[0] ? 1 : 0;
+  }
+});
+
+function openArcade() {
+  document.getElementById("calculator").style.display = "none";
+  document.getElementById("arcade").style.display = "block";
+}
+
+function closeArcade() {
+  document.getElementById("arcade").style.display = "none";
+  document.getElementById("calculator").style.display = "block";
+}
+</script>
+
+</body>
+</html>
