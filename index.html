@@ -53,6 +53,27 @@ button:hover { background: #ddd; }
   border: 2px solid #777;
 }
 #arcade button { margin: 5px; }
+.game-library {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.game-card {
+  background: #292929;
+  border: 1px solid #666;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.game-card h3 {
+  margin-top: 0;
+}
+
+.game-card p {
+  color: #aaa;
+}
 </style>
 </head>
 <body>
@@ -89,8 +110,25 @@ button:hover { background: #ddd; }
 <div id="arcade">
   <h1>🍅 BROTATOES TOMATOES ENGINE</h1>
   <p>SECRET ACCESS GRANTED</p>
-  <h2>THE HIDDEN ARCADE</h2>
-  <p>Games coming soon...</p>
+  <h2>THE GAME LIBRARY</h2>
+
+  <div class="game-library">
+    <div class="game-card">
+      <h3>Game 1</h3>
+      <p>Coming soon...</p>
+    </div>
+
+    <div class="game-card">
+      <h3>Game 2</h3>
+      <p>Coming soon...</p>
+    </div>
+
+    <div class="game-card">
+      <h3>Game 3</h3>
+      <p>Coming soon...</p>
+    </div>
+  </div>
+
   <button onclick="closeArcade()">Return to Calculator</button>
 </div>
 
