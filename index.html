@@ -38,7 +38,7 @@ body {
 
 #calculator {
   position: relative;
-  background: #f0f0f0;
+  background: #ffffff;
   font-family: Arial, sans-serif;
   width: 310px;
   max-width: 100%;
@@ -90,6 +90,7 @@ body {
   right: -25px;
   z-index: 2;
   pointer-events: none;
+  transform: rotate(-25deg);
 }
 
 /* SECRET ARCADE */
@@ -199,35 +200,7 @@ body {
   <div id="calculator">
 
     <!-- BLUE SEASHELL -->
-    <svg class="shell-decoration"
-         viewBox="0 0 100 100"
-         xmlns="http://www.w3.org/2000/svg"
-         aria-hidden="true">
-
-      <path d="M50 10
-        C28 10 10 40 14 65
-        C18 88 82 88 86 65
-        C90 40 72 10 50 10Z"
-        fill="#65c9e8"
-        stroke="#187b9b"
-        stroke-width="4"/>
-
-      <path d="M50 15 L50 77
-        M50 20 L29 75
-        M50 20 L71 75
-        M50 25 L17 65
-        M50 25 L83 65"
-        fill="none"
-        stroke="#d8f7f7"
-        stroke-width="4"
-        stroke-linecap="round"/>
-
-      <path d="M20 68 Q50 90 80 68"
-        fill="none"
-        stroke="#187b9b"
-        stroke-width="4"/>
-
-    </svg>
+    <img src="seashell.png" class="shell-decoration" alt="">
 
     <h3>Calculator</h3>
 
